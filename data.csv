@@ -1,0 +1,37 @@
+id,relation,situation,raw_message,target_tone
+1,friend,apology,"Sorry I replied so late. I was busy.",polite
+2,friend,apology,"My bad for missing your call yesterday.",polite
+3,friend,apology,"Sorry I forgot to send you the photos.",polite
+4,friend,refusal,"I can't go tonight.",polite
+5,friend,refusal,"No, I don't want to join the trip.",polite
+6,friend,refusal,"I don't think I can help with that this weekend.",polite
+7,friend,request,"Can you send me the notes?",polite
+8,friend,request,"Can you wait for me for 10 minutes?",polite
+9,friend,request,"Can you check my presentation once?",polite
+10,friend,reschedule,"Can we meet tomorrow instead?",polite
+11,friend,reschedule,"I can't make it at 6. Can we do 7?",polite
+12,friend,reschedule,"Something came up. Let's talk later.",polite
+13,teammate,apology,"Sorry, I uploaded my part late.",professional_polite
+14,teammate,apology,"My bad, I couldn't finish the slides on time.",professional_polite
+15,teammate,apology,"Sorry for not replying in the group chat earlier.",professional_polite
+16,teammate,refusal,"I can't take your part too.",professional_polite
+17,teammate,refusal,"I don't think I can join the extra meeting tonight.",professional_polite
+18,teammate,refusal,"I can't redo the whole section by myself.",professional_polite
+19,teammate,request,"Can you upload your part by tonight?",professional_polite
+20,teammate,request,"Can you check the final document once more?",professional_polite
+21,teammate,request,"Can you update me if the professor replies?",professional_polite
+22,teammate,reschedule,"I can't make today's team meeting.",professional_polite
+23,teammate,reschedule,"Can we move the meeting to tomorrow morning?",professional_polite
+24,teammate,reschedule,"Something came up, so I need to join a bit later.",professional_polite
+25,professor,apology,"Sorry for the late email.",formal_polite
+26,professor,apology,"I apologize for missing class yesterday.",formal_polite
+27,professor,apology,"Sorry, I submitted the assignment late.",formal_polite
+28,professor,refusal,"I can't attend the meeting this Friday.",formal_polite
+29,professor,refusal,"I don't think I can join the extra session.",formal_polite
+30,professor,refusal,"I won't be able to participate in the event.",formal_polite
+31,professor,request,"Can you check my draft?",formal_polite
+32,professor,request,"Could you give me an extension for the assignment?",formal_polite
+33,professor,request,"Can I ask for feedback on my proposal?",formal_polite
+34,professor,reschedule,"Can we move our meeting to next week?",formal_polite
+35,professor,reschedule,"I can't make the office hours tomorrow.",formal_polite
+36,professor,reschedule,"Something unexpected came up, so I need to reschedule.",formal_polite

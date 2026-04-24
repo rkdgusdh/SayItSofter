@@ -1,0 +1,27 @@
+name: sayitsofter
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pandas
+  - pyyaml
+  - tqdm
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+  - pip:
+      - openai>=2.0.0
+      - anthropic>=0.74.0
+      - google-genai>=1.30.0
+      - transformers>=4.57.0
+      - accelerate>=1.10.0
+      - sentencepiece>=0.2.0
+      - protobuf>=5.0.0
+      - safetensors>=0.5.0
+      - huggingface_hub>=0.34.0
+      - matplotlib>=3.7.0

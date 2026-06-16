@@ -45,6 +45,10 @@ SayItSofter/
 ├── run_gemini.py
 ├── run_qwen.py
 ├── eval.py
+├── run_refine.py     # Term Project #2: faithfulness-aware rewriting (baseline / strict / self-refine)
+├── nli_utils.py      # objective bidirectional NLI faithfulness scoring (API-only)
+├── nli_metric.py     # append the NLI meaning-preservation metric to any run CSV
+└── make_plots.py     # before/after comparison figures
 ```
 
 ### File descriptions
@@ -175,6 +179,49 @@ In addition to score-based evaluation, the project also analyzes failure types s
 - context mismatch
 - tone mismatch
 - unnaturalness
+
+---
+
+## Term Project #2: Faithfulness Upgrade
+
+The first study found that **meaning preservation** was the weakest dimension and
+that **added information** / **meaning drift** were the dominant failures: models
+improved politeness by inserting content the user never wrote. This upgrade targets
+that bottleneck directly, using the strongest base model (Claude) in an API-only
+setting (no GPU; Qwen is therefore omitted).
+
+We compare three rewriting strategies and add an objective faithfulness metric:
+
+- **`run_refine.py`** — generates each message with three strategies and writes one
+  combined CSV (so `eval.py` can break down before/after by `prompt_variant`):
+  - `context` — the original baseline prompt;
+  - `strict_prompt` — single-pass prompt that forbids adding facts while allowing free tone change;
+  - `self_refine` — a generate → critique → revise loop with a calibrated critic,
+    gated by the objective NLI score.
+- **`nli_utils.py` / `nli_metric.py`** — a generator-independent meaning-preservation
+  metric based on **bidirectional NLI entailment** (scored by Gemini, an independent
+  model), complementing the LLM-as-a-judge scores.
+- **`make_plots.py`** — produces the before/after comparison figures.
+
+Example:
+
+```bash
+export ANTHROPIC_API_KEY=...   # generation (Claude)
+export GEMINI_API_KEY=...      # NLI metric (Gemini)
+export OPENAI_API_KEY=...      # judge
+
+python run_refine.py --data data.csv --outdir results/claude_refine3
+python eval.py --input-csv results/claude_refine3/runs/<run>.csv \
+               --generator-model claude --judge-models gpt gemini
+python nli_metric.py --input-csv results/claude_refine3/runs/<run>.csv
+python make_plots.py
+```
+
+**Key finding — prevention beats cure.** A single-pass *strict* prompt reduced
+added-information failures the most (9 → 2) and raised objective faithfulness
+(NLI 0.806 → 0.950) with no tone loss, outperforming the more expensive
+self-refine loop (9 → 4). A calibrated refine loop is best used as a targeted
+safety net rather than the primary mechanism.
 
 ---
 

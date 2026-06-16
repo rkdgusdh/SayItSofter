@@ -6,3 +6,4 @@ report_artifacts/
 *.jsonl
 *.csv.bak
 .DS_Store
+*.log
